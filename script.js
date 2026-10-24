@@ -937,6 +937,10 @@ document.addEventListener('DOMContentLoaded', () => {
       countEls.forEach(el => {
         el.textContent = Number(cached).toLocaleString('ru-RU');
       });
+    } else {
+      countEls.forEach(el => {
+        el.textContent = '10';
+      });
     }
 
     window.BusuanziCallback = function(data) {
