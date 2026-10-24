@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YaFicus &middot; Grimoire Profile</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="favicon.svg">
+  <meta name="theme-color" content="#dc2626">
+  <meta name="description" content="YaFicus — создание сайтов, разработка на Python, эндуро-райдер (MTB) и создатель проектов. Екатеринбург · Canyon Bike Family.">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="YaFicus">
+  <meta property="og:title" content="YaFicus &middot; Grimoire Profile">
+  <meta property="og:description" content="Python Master &middot; Enduro MTB (CBF) &middot; Екатеринбург &middot; 17 Аркан">
+  <meta property="og:image" content="avatar.jpg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="YaFicus &middot; Grimoire Profile">
+  <meta name="twitter:description" content="Python Master &middot; Enduro MTB (CBF) &middot; Екатеринбург &middot; 17 Аркан">
+  <meta name="twitter:image" content="avatar.jpg">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body data-theme="blood">
+  <div class="cyber-grid" aria-hidden="true"></div>
+
+  <canvas id="emberCanvas" class="ember-canvas"></canvas>
+
+  <div class="mist-overlay"></div>
+  <div class="candle-glow candle-left"></div>
+  <div class="candle-glow candle-right"></div>
+  <div class="vignette"></div>
+
+  <main class="page-container">
+    <div class="grimoire-tabs-bar">
+      <button class="grimoire-tab-btn active" id="tabBtnProfile" data-target="pageProfile">
+        <span class="tab-sigil"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 20H6a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h11v16z"/><path d="M19 20a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8"/><path d="M7 8h8"/><path d="M7 12h5"/></svg></span>
+        <span class="tab-text">I &middot; Профиль</span>
+      </button>
+      <div class="tab-separator">⸸</div>
+      <button class="grimoire-tab-btn" id="tabBtnDossier" data-target="pageDossier">
+        <span class="tab-sigil"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-3 11.5L9 11.5l3.5-3.5L15 11l3.5-2"/><path d="M5.5 17.5L9 11.5"/></svg></span>
+        <span class="tab-text">II &middot; Гараж</span>
+      </button>
+      <div class="tab-separator">⸸</div>
+      <button class="grimoire-tab-btn" id="tabBtnProjects" data-target="pageProjects">
+        <span class="tab-sigil"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg></span>
+        <span class="tab-text">III &middot; Альбомы</span>
+      </button>
+      <div class="tab-separator">⸸</div>
+      <button class="grimoire-tab-btn" id="tabBtnAllies" data-target="pageAllies">
+        <span class="tab-sigil"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c-.6 1.2-2 2.6-2 4.2a2 2 0 0 0 4 0c0-1.6-1.4-3-2-4.2z" fill="currentColor"/><line x1="12" y1="6.5" x2="12" y2="10"/><rect x="8" y="10" width="8" height="11" rx="1.5"/></svg></span>
+        <span class="tab-text">IV &middot; Круг</span>
+      </button>
+    </div>
+
+    <div class="gothic-frame">
+      <div class="corner corner-tl"></div>
+      <div class="corner corner-tr"></div>
+      <div class="corner corner-bl"></div>
+      <div class="corner corner-br"></div>
+
+      <div class="card grimoire-page active" id="pageProfile">
+        <header class="card-header">
+          <div class="status-pill" id="statusPill" title="Моё время: Екатеринбург (UTC+5)">
+            <span class="status-dot awake" id="statusDot"></span>
+            <span class="candle-flame" id="statusIcon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c-.6 1.2-2 2.6-2 4.2a2 2 0 0 0 4 0c0-1.6-1.4-3-2-4.2z" fill="currentColor"/><line x1="12" y1="6.5" x2="12" y2="10"/><rect x="8" y="10" width="8" height="11" rx="1.5"/></svg></span>
+            <span class="status-text" id="statusText">Моё время &middot; Екатеринбург</span>
+          </div>
+          <div class="header-sigil">༺ ⸸ ༻</div>
+        </header>
+
+        <section class="profile-hero">
+          <div class="avatar-arch-wrapper">
+            <div class="avatar-arch" id="avatarBox" title="Кликни, чтобы включить/выключить звук или паузу">
+              <video class="avatar-video" id="avatarVideo" autoplay loop muted playsinline poster="avatar.jpg">
+                <source src="avatar.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="arch-pedestal">༺ XVII &middot; STELLA OBSIDIANA ༻</div>
+          </div>
+
+          <div class="profile-titles">
+            <div class="crest-ornament">🙤 &middot; 🕇 &middot; 🙦</div>
+            <h1 class="name">YaFicus</h1>
+            <p class="tagline">Python Master &middot; Enduro Rider (CBF) &middot; Creator</p>
+            <div class="meta-tags">
+              <span class="meta-pill">ISTP-T</span>
+              <span class="meta-pill">ID: 1267211278</span>
+              <span class="meta-pill"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> RU / EN [A2]</span>
+              <span class="meta-pill"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-3 11.5L9 11.5l3.5-3.5L15 11l3.5-2"/><path d="M5.5 17.5L9 11.5"/></svg> ENDURO MTB &middot; CBF</span>
+            </div>
+          </div>
+        </section>
+
+        <div class="gothic-divider">
+          <span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="14.5 17.5 3 6 3 3 6 3 17.5 14.5"/><line x1="13" y1="19" x2="19" y2="13"/><line x1="16" y1="16" x2="20" y2="20"/><line x1="19" y1="21" x2="21" y2="19"/><polyline points="14.5 6.5 18 3 21 3 21 6 17.5 9.5"/><line x1="5" y1="14" x2="11" y2="20"/></svg></span>
+        </div>
+
+        <section class="card-section">
+          <h2 class="section-title"><span>Летопись / Обо мне</span></h2>
+          <p class="bio-text">
+            Разработчик и эндуро-райдер (MTB) из Екатеринбурга. Создаю современные сайты и веб-проекты, пишу бэкенд на <strong>Python</strong>, 
+            исследую глубины <strong>Java</strong>, разрабатываю ботов и автоматизацию. 
+            Представляю маунтинбайк-сообщество <strong>Canyon Bike Family (CBF)</strong>, покоряю горные трейлы и развиваю собственные проекты.
+          </p>
+
+          <div class="tome-stats">
+            <div class="tome-card">
+              <span class="tome-num">20 лет</span>
+              <span class="tome-label">24.08.2006</span>
+            </div>
+            <div class="tome-card">
+              <span class="tome-num">XVII</span>
+              <span class="tome-label">Аркан «Звезда»</span>
+            </div>
+            <div class="tome-card">
+              <span class="tome-num">ISTP-T</span>
+              <span class="tome-label">Тип личности</span>
+            </div>
+            <div class="tome-card">
+              <span class="tome-num">RU / EN</span>
+              <span class="tome-label">Родной / A2</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="card-section">
+          <h2 class="section-title"><span>Гримуар умений & Стек</span></h2>
+          <div class="skills-grid">
+            <span class="skill-tag">
+              <svg class="skill-svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l6 4.5-6 4.5z"/>
+              </svg>
+              Python [Master]
+            </span>
+            <span class="skill-tag">
+              <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="5.5" cy="17.5" r="3.5"></circle>
+                <circle cx="18.5" cy="17.5" r="3.5"></circle>
+                <path d="M15 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-3 11.5L9 11.5l3.5-3.5L15 11l3.5-2"></path>
+                <path d="M5.5 17.5L9 11.5"></path>
+              </svg>
+              Enduro MTB &middot; CBF
+            </span>
+            <span class="skill-tag">
+              <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                <line x1="6" y1="1" x2="6" y2="4"></line>
+                <line x1="10" y1="1" x2="10" y2="4"></line>
+                <line x1="14" y1="1" x2="14" y2="4"></line>
+              </svg>
+              Java [Junior]
+            </span>
+            <span class="skill-tag">
+              <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="10" rx="2"></rect>
+                <circle cx="12" cy="5" r="2"></circle>
+                <path d="M12 7v4"></path>
+                <line x1="8" y1="16" x2="8.01" y2="16"></line>
+                <line x1="16" y1="16" x2="16.01" y2="16"></line>
+              </svg>
+              Telegram Bots
+            </span>
+            <span class="skill-tag">
+              <svg class="skill-svg" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+              </svg>
+              FastAPI / Backend
+            </span>
+            <span class="skill-tag">
+              <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="18" rx="2" ry="2"></rect>
+                <line x1="2" y1="9" x2="22" y2="9"></line>
+                <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                <line x1="10" y1="6" x2="10.01" y2="6"></line>
+                <line x1="14" y1="6" x2="14.01" y2="6"></line>
+              </svg>
+              Web Development
+            </span>
+            <span class="skill-tag">
+              <svg class="skill-svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+              YouTube Content
+            </span>
+            <span class="skill-tag">
+              <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+              </svg>
+              Automation &amp; Scripts
+            </span>
+            <span class="skill-tag">
+              <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+              AI &amp; LLM Integration
+            </span>
+            <span class="skill-tag">
+              <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+              Web Development
+            </span>
+          </div>
+        </section>
+
+        <section class="card-section">
+          <h2 class="section-title"><span>Хроники и Творчество</span></h2>
+          <div class="relic-list">
+            <a href="https://t.me/canyon_bike_family" target="_blank" class="relic-item-link">
+              <div class="relic-item">
+                <div class="relic-rune">
+                  <svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="5.5" cy="17.5" r="3.5"></circle>
+                    <circle cx="18.5" cy="17.5" r="3.5"></circle>
+                    <path d="M15 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-3 11.5L9 11.5l3.5-3.5L15 11l3.5-2"></path>
+                    <path d="M5.5 17.5L9 11.5"></path>
+                  </svg>
+                </div>
+                <div class="relic-info">
+                  <h3>Canyon Bike Family (CBF) ↗</h3>
+                  <p>Горный велоспорт (Enduro MTB), сообщество райдеров и культура Canyon.</p>
+                </div>
+              </div>
+            </a>
+            <a href="https://t.me/ficusblogi" target="_blank" class="relic-item-link">
+              <div class="relic-item">
+                <div class="relic-rune">
+                  <svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="3 6 5 6 21 6"></polyline>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                    <line x1="10" y1="11" x2="10" y2="17"></line>
+                    <line x1="14" y1="11" x2="14" y2="17"></line>
+                  </svg>
+                </div>
+                <div class="relic-info">
+                  <h3>Мусорка мыслей ↗</h3>
+                  <p>Странные и кринжовые посты, ночные загоны, щитпост и поток сознания без фильтров.</p>
+                </div>
+              </div>
+            </a>
+
+            <a href="https://t.me/FicusBio" target="_blank" class="relic-item-link">
+              <div class="relic-item">
+                <div class="relic-rune">
+                  <svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="7.5" cy="15.5" r="5.5"></circle>
+                    <path d="M11.5 11.5L22 1"></path>
+                    <path d="M17 6l3 3"></path>
+                    <path d="M19 4l2 2"></path>
+                  </svg>
+                </div>
+                <div class="relic-info">
+                  <h3>Ficus Bio ↗</h3>
+                  <p>Личная анкета в Telegram: факты обо мне, статус и ссылки.</p>
+                </div>
+              </div>
+            </a>
+
+            <a href="https://www.youtube.com/@yaficus" target="_blank" class="relic-item-link">
+              <div class="relic-item">
+                <div class="relic-rune">
+                  <svg class="svg-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                  </svg>
+                </div>
+                <div class="relic-info">
+                  <h3>YouTube Канал (@yaficus) ↗</h3>
+                  <p>Видеоматериалы, контент и медийные проекты.</p>
+                </div>
+              </div>
+            </a>
+          </div>
+        </section>
+
+        <section class="card-section">
+          <h2 class="section-title"><span>Печать связи & Сети</span></h2>
+          <div class="contacts-grid">
+            <a href="https://t.me/yaficus" target="_blank" class="gothic-btn" data-copy="@yaficus">
+              <div class="btn-left">
+                <span class="btn-sigil">
+                  <svg class="svg-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M1.946 9.315c-.522-.174-.527-.455.01-.634L21.044 2.32c.529-.176.832.12.684.638l-3.5 15.34c-.16.634-.537.74-1.077.442l-5.06-3.73-2.44 2.35c-.27.27-.5.5-.96.5l.36-5.16 9.4-8.5c.41-.37-.09-.57-.63-.21l-11.62 7.32-5.02-1.57z"/>
+                  </svg>
+                </span>
+                <div class="btn-desc">
+                  <span class="btn-title">Telegram</span>
+                  <span class="btn-sub">@yaficus</span>
+                </div>
+              </div>
+              <button class="copy-seal" title="Скопировать юзернейм" aria-label="Скопировать юзернейм">
+                <svg class="copy-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+              </button>
+            </a>
+
+            <a href="https://discord.com/users/yaficus" target="_blank" class="gothic-btn" data-copy="yaficus">
+              <div class="btn-left">
+                <span class="btn-sigil">
+                  <svg class="svg-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+                  </svg>
+                </span>
+                <div class="btn-desc">
+                  <span class="btn-title">Discord</span>
+                  <span class="btn-sub">yaficus (Ficus™)</span>
+                </div>
+              </div>
+              <button class="copy-seal" title="Скопировать Discord ник" aria-label="Скопировать Discord ник">
+                <svg class="copy-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+              </button>
+            </a>
+
+            <a href="https://github.com/YaFicus" target="_blank" class="gothic-btn" data-copy="https://github.com/YaFicus">
+              <div class="btn-left">
+                <span class="btn-sigil">
+                  <svg class="svg-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                  </svg>
+                </span>
+                <div class="btn-desc">
+                  <span class="btn-title">GitHub</span>
+                  <span class="btn-sub">github.com/YaFicus</span>
+                </div>
+              </div>
+              <span class="rune-arrow">↗</span>
+            </a>
+
+            <a href="https://www.youtube.com/@yaficus" target="_blank" class="gothic-btn" data-copy="https://www.youtube.com/@yaficus">
+              <div class="btn-left">
+                <span class="btn-sigil">
+                  <svg class="svg-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                  </svg>
+                </span>
+                <div class="btn-desc">
+                  <span class="btn-title">YouTube</span>
+                  <span class="btn-sub">@yaficus</span>
+                </div>
+              </div>
+              <span class="rune-arrow">↗</span>
+            </a>
+
+            <a href="https://t.me/ficusblogi" target="_blank" class="gothic-btn" data-copy="https://t.me/ficusblogi">
+              <div class="btn-left">
+                <span class="btn-sigil">
+                  <svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="3 6 5 6 21 6"></polyline>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                    <line x1="10" y1="11" x2="10" y2="17"></line>
+                    <line x1="14" y1="11" x2="14" y2="17"></line>
+                  </svg>
+                </span>
+                <div class="btn-desc">
+                  <span class="btn-title">Мусорка мыслей</span>
+                  <span class="btn-sub">@ficusblogi</span>
+                </div>
+              </div>
+              <span class="rune-arrow">↗</span>
+            </a>
+          </div>
+        </section>
+
+        <div class="page-portal-section page-portal-dual">
+          <button class="portal-cta-btn" id="portalToDossier">
+            <span class="portal-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-3 11.5L9 11.5l3.5-3.5L15 11l3.5-2"/><path d="M5.5 17.5L9 11.5"/></svg></span>
+            <span class="portal-text">
+              <strong class="portal-head">II &middot; Гараж &amp; Байк</strong>
+              <small class="portal-sub">Canyon Torque 29 CF</small>
+            </span>
+            <span class="portal-arrow">➔</span>
+          </button>
+          <button class="portal-cta-btn" id="portalToProjects">
+            <span class="portal-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg></span>
+            <span class="portal-text">
+              <strong class="portal-head">III &middot; Альбомы VK</strong>
+              <small class="portal-sub">Музыкальные рекомендации</small>
+            </span>
+            <span class="portal-arrow">➔</span>
+          </button>
+        </div>
+
+        <footer class="card-footer">
+          <div class="footer-filigree">༺ † ༻</div>
+          <p class="epitaph">«Per aspera ad astra &middot; In tenebris lux»</p>
+          <span class="year-seal">YAFICUS &middot; MMXXVI</span>
+        </footer>
+      </div>
+
+      <div class="card grimoire-page" id="pageDossier" style="display: none;">
+        <header class="card-header dossier-header">
+          <button class="back-pill-btn" id="backToProfileBtn" title="Вернуться к профилю">
+            <span class="back-arrow">←</span>
+            <span class="back-label">I &middot; Профиль</span>
+          </button>
+          <div class="dossier-header-title">
+            <span class="sigil-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-3 11.5L9 11.5l3.5-3.5L15 11l3.5-2"/><path d="M5.5 17.5L9 11.5"/></svg></span>
+            <span>Боевой Гараж &middot; Canyon</span>
+          </div>
+          <div class="header-sigil">༺ ⸸ ༻</div>
+        </header>
+
+        <section class="card-section">
+          <div class="dossier-hero-badge">
+            <div class="badge-row-main">
+              <div class="canyon-logo-wrap" title="Canyon Bicycles">
+                <svg class="canyon-brand-logo" viewBox="0 0 1024 144" fill="currentColor" aria-label="Canyon">
+                  <path d="M25.395,1.187c-29.314,0-34.205,24.226-9.661,54.105l41.547,50.386c14.962,18.172,28.737,32.367,34.855,37.182 c0.169,0.129,0.336,0.18,0.582,0.18h42.101c-14.417-9.213-31.878-26.022-44.59-40.765L43.286,45.888 c-10.001-12.171-8.335-18.653,3.262-17.075c5.853,0.796,21.905,8.591,39.55,24.83h36.195C94.022,21.834,61.046,1.187,25.395,1.187"/>
+                  <path d="M150.207,144.215h28.946c-1.413-11.015-6.277-23.98-16.313-36.063h-31.816C142.457,121.96,147.63,132.572,150.207,144.215"/>
+                  <polyline points="635.381,105.377 589.001,4.065 560.189,4.065 594.771,73.428 593.829,73.418 501.408,4.065 460.456,4.065 605.27,111.18 633.093,144.188 668.105,144.188 635.381,105.377"/>
+                  <polyline points="378.444,4.065 492.015,137.139 491.065,137.125 325.646,4.065 292.143,4.065 408.71,143.002 442.006,143.002 373.844,67.492 374.788,67.492 469.324,144.188 527.214,144.188 409.659,4.065 378.444,4.065"/>
+                  <polyline points="875.228,4.065 988.803,137.139 987.853,137.125 822.423,4.065 788.905,4.065 905.503,143.002 938.777,143.002 871.859,67.492 871.569,67.492 966.105,144.188 1024,144.188 906.421,4.065 875.228,4.065"/>
+                  <polyline points="163.511,4.065 235.119,143.008 264.936,143.008 210.593,41.637 211.512,41.637 316.461,144.188 354.064,144.188 207.5,4.065 163.511,4.065"/>
+                  <path d="M740.176,102.202c12.736,14.765,30.229,31.595,44.652,40.8H742.68c-0.247,0-0.416-0.035-0.589-0.161 c-6.134-4.831-19.918-19.049-34.906-37.224l-41.587-50.439C641.017,25.257,645.919,1,675.264,1 c38.451,0,73.806,23.99,103.477,60.077l21.449,26.074c20.326,24.688,26.599,39.927,29.647,57.037h-27.56 c-2.594-11.646-7.771-22.271-19.208-36.092l-30.394-36.981c-23.372-28.343-48.561-41.403-56.249-42.449 c-11.586-1.572-13.254,4.914-3.254,17.099L740.176,102.202"/>
+                </svg>
+              </div>
+            </div>
+            <div class="badge-row-pills">
+              <span class="bike-spec-pill cat-pill">5 CF</span>
+              <span class="bike-spec-pill mullet-pill">Mullet 29" / 27.5"</span>
+              <span class="bike-spec-pill turmeric-pill"><span class="color-dot turmeric"></span> Kurkuma</span>
+              <span class="bike-spec-pill cbf-pill">CBF Family</span>
+            </div>
+          </div>
+
+          <div class="bike-showcase-frame">
+            <div class="bike-image-wrapper" id="bikeImageWrapper">
+              <img src="bike.jpg" alt="Canyon Torque 29 CF Mullet" class="bike-image" id="bikeImage" onerror="this.style.display='none'; document.getElementById('bikePlaceholder').style.display='flex';">
+              <div class="bike-image-overlay">
+                <span class="bike-overlay-badge">TORQUE 29 CF</span>
+              </div>
+              <div class="bike-placeholder" id="bikePlaceholder" style="display: none;">
+                <svg class="bike-placeholder-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="5.5" cy="17.5" r="3.5"></circle>
+                  <circle cx="18.5" cy="17.5" r="3.5"></circle>
+                  <path d="M15 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-3 11.5L9 11.5l3.5-3.5L15 11l3.5-2"></path>
+                  <path d="M5.5 17.5L9 11.5"></path>
+                </svg>
+                <span class="placeholder-text">Прикрепи фото своего байка в чат</span>
+                <span class="placeholder-sub">или сохрани как <code>bike.jpg</code> в папку проекта</span>
+              </div>
+            </div>
+          </div>
+
+          <h2 class="section-title"><span>Боевой Конь &middot; Torque 29 CF [Mullet]</span></h2>
+          <p class="bio-text">
+            Тяжёлый фрирайд-аппарат для самых агрессивных трейлов в цвете <em>«Kurkuma»</em>. Карбоновый Торк на пружине и амортизаторе <strong>180 мм / 180 мм</strong> бездонного хода и колёса <strong>29&Prime; / 27.5&Prime;</strong>. Жрёт любые камни, дропы и крутые съезжалки &mdash; никаких компромиссов.
+          </p>
+
+          <div class="bike-specs-grid">
+            <div class="spec-card">
+              <div class="spec-header">
+                <svg class="spec-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="5.5" cy="17.5" r="3.5"></circle>
+                  <circle cx="18.5" cy="17.5" r="3.5"></circle>
+                  <path d="M15 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-3 11.5L9 11.5l3.5-3.5L15 11l3.5-2"></path>
+                  <path d="M5.5 17.5L9 11.5"></path>
+                </svg>
+                <span class="spec-category">Рама & Карбон</span>
+              </div>
+              <span class="spec-value">Torque 29 CF</span>
+              <span class="spec-sub">5 CF &middot; size L &middot; «Kurkuma»</span>
+            </div>
+
+            <div class="spec-card highlight-spec">
+              <div class="spec-header">
+                <svg class="spec-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="2" x2="12" y2="22"></line>
+                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+                <span class="spec-category">Вилка (Front 29")</span>
+              </div>
+              <span class="spec-value">FOX 180 mm &middot; 29"</span>
+              <span class="spec-sub">Экстремальный ход &middot; Плюш и торсионная жесткость</span>
+            </div>
+
+            <div class="spec-card highlight-spec">
+              <div class="spec-header">
+                <svg class="spec-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2v2M8 5c0 1.2 8 1.2 8 2.5s-8 1.2-8 2.5 8 1.2 8 2.5-8 1.2-8 2.5 8 1.2 8 2.5M12 20v2"></path>
+                </svg>
+                <span class="spec-category">Задний амортизатор &middot; Пружина (Coil)</span>
+              </div>
+              <span class="spec-value">RockShox Super Deluxe Ultimate Coil</span>
+              <span class="spec-sub">Ход 180 mm &middot; Пружинный аморт &middot; Линейный плюш</span>
+            </div>
+
+            <div class="spec-card">
+              <div class="spec-header">
+                <svg class="spec-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                </svg>
+                <span class="spec-category">Вилсет & Клан</span>
+              </div>
+              <span class="spec-value">Mullet (29" / 27.5") &middot; CBF</span>
+              <span class="spec-sub">Canyon Bike Family</span>
+            </div>
+          </div>
+        </section>
+
+        <div class="page-portal-section page-portal-dual">
+          <button class="portal-cta-btn return-btn" id="returnToProfileBtn">
+            <span class="portal-arrow">←</span>
+            <span class="portal-text">
+              <strong class="portal-head">I &middot; Профиль</strong>
+              <small class="portal-sub">Главная визитка &middot; Обо мне</small>
+            </span>
+          </button>
+          <button class="portal-cta-btn" id="portalGarageToProjects">
+            <span class="portal-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg></span>
+            <span class="portal-text">
+              <strong class="portal-head">III &middot; Альбомы VK</strong>
+              <small class="portal-sub">Музыкальные рекомендации</small>
+            </span>
+            <span class="portal-arrow">➔</span>
+          </button>
+        </div>
+
+        <footer class="card-footer">
+          <div class="footer-filigree">༺ † ༻</div>
+          <p class="epitaph">«Ride hard &middot; Code deeper &middot; In tenebris lux»</p>
+          <span class="year-seal">TORQUE 29 CF MULLET &middot; COIL &middot; YAFICUS</span>
+        </footer>
+      </div>
+
+      <div class="card grimoire-page" id="pageProjects" style="display: none;">
+        <header class="card-header dossier-header">
+          <button class="back-pill-btn" id="backToProfileFromProjectsBtn" title="Вернуться к профилю">
+            <span class="back-arrow">←</span>
+            <span class="back-label">I &middot; Профиль</span>
+          </button>
+          <div class="dossier-header-title">
+            <span class="sigil-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg></span>
+            <span>Музыка &middot; Альбомы VK</span>
+          </div>
+          <div class="header-sigil">༺ ⸸ ༻</div>
+        </header>
+
+        <div class="music-hero-header">
+          <div class="crest-ornament">🙤 &middot; 🕇 &middot; 🙦</div>
+          <h1 class="music-page-title">Музыкальный Гримуар &middot; Альбомы VK</h1>
+          <div class="music-page-subtitle">Кураторские альбомы &middot; Готик-рок &middot; Синтипоп &middot; Андерграунд</div>
+        </div>
+
+        <section class="card-section">
+          <div class="projects-hero-badge">
+            <p class="bio-text">
+              Музыка — главное топливо для ночных каток на байке и глубокого погружения в код. Здесь собраны мои персональные рекомендации альбомов и плейлистов ВКонтакте: от канона готик-рока и оккультного рока до берлинского EBM и сырого отечественного пост-панка.
+            </p>
+          </div>
+
+          <div class="project-filters" id="projectFilters">
+            <button class="filter-pill active" data-filter="all">Все плейлисты <span class="filter-count">4</span></button>
+            <button class="filter-pill" data-filter="black"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" stroke="none"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg> На черном <span class="filter-count">1</span></button>
+            <button class="filter-pill" data-filter="sad"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c-.6 1.2-2 2.6-2 4.2a2 2 0 0 0 4 0c0-1.6-1.4-3-2-4.2z" fill="currentColor"/><line x1="12" y1="6.5" x2="12" y2="10"/><rect x="8" y="10" width="8" height="11" rx="1.5"/></svg> Sadnecessary <span class="filter-count">1</span></button>
+            <button class="filter-pill" data-filter="heavy"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" stroke="none"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Ушедолбежка <span class="filter-count">1</span></button>
+            <button class="filter-pill" data-filter="doomer"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" stroke="none"><path d="M12 6.5c-.8 0-1.5.7-1.5 1.5 0 .2 0 .3.1.5C8 9 5 8 2 10c1.5 3 4.5 4 6 3.5 0 2 2 4.5 4 4.5s4-2.5 4-4.5c1.5.5 4.5-.5 6-3.5-3-2-6-1-8.6-1.5.1-.2.1-.3.1-.5 0-.8-.7-1.5-1.5-1.5z"/></svg> Happiness Stops Here <span class="filter-count">1</span></button>
+          </div>
+
+          <div class="projects-grid" id="projectsGrid">
+
+            <div class="project-card album-card" data-category="black">
+              <div class="project-card-top">
+                <div class="album-card-topbar">
+                  <span class="album-type-badge"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg> VK Playlist</span>
+                  <span class="project-status-badge prod">★ Dark Vibe</span>
+                </div>
+                <div class="album-card-header">
+                  <div class="album-cover-thumb">
+                    <img src="cover_black.jpg" alt="Сегодня на черном" class="album-thumb-img">
+                    <div class="album-vinyl-peek"></div>
+                  </div>
+                  <div class="album-title-group">
+                    <h3 class="project-title">Сегодня на черном</h3>
+                    <span class="project-sub">Плейлист YaFicus &middot; ВКонтакте</span>
+                  </div>
+                </div>
+                <div class="album-meta-row">
+                  <span class="album-meta-tag">Тёмная сцена</span>
+                  <span class="album-meta-tag">Post-Punk &middot; Occult</span>
+                </div>
+                <p class="project-desc">
+                  «Тёмный готический саунд, холодный пост-панк и оккультный рок. Главный саундтрек для ночных сессий, когда за окном мгла, а мысли текут глубже обычного.»
+                </p>
+                <div class="album-track-highlights">
+                  <span class="track-highlight-label">Вайб плейлиста:</span>
+                  <span class="highlight-item">Тёмный стиль &middot; Оккультные мотивы &middot; Ночной накат</span>
+                </div>
+              </div>
+              <div class="project-card-footer">
+                <a href="https://vk.ru/music/playlist/572522119_155_341c478fab09604d15" target="_blank" class="project-btn vk-play-btn">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                    <path d="M13.162 18.994c.609 0 .858-.406.851-.915-.072-1.785.743-2.428 1.488-2.428.847 0 1.258.609 1.769 1.543.687 1.258 1.258 1.8 2.378 1.8h2.357c.609 0 .858-.406.406-.915-.847-1.015-2.223-2.613-2.223-2.613-.406-.406-.55-.743 0-1.488.406-.55 1.769-2.484 1.95-3.411.109-.55-.109-.847-.743-.847h-2.357c-.55 0-.743.272-.915.687-.406 1.015-1.543 3.056-2.092 3.056-.272 0-.406-.109-.406-.743V9.588c0-.609-.163-.847-.687-.847h-3.693c-.406 0-.609.272-.609.55 0 .55.847.687.915 2.223v3.351c0 .743-.163.858-.406.858-.743 0-2.545-2.723-3.626-5.836-.204-.609-.406-.847-.95-.847H1.8c-.687 0-.847.272-.847.687 0 .55.687 3.351 3.262 6.945 2.157 3.056 5.176 4.721 8.947 4.721z"/>
+                  </svg>
+                  Слушать в VK Музыке ↗
+                </a>
+              </div>
+            </div>
+
+            <div class="project-card album-card" data-category="sad">
+              <div class="project-card-top">
+                <div class="album-card-topbar">
+                  <span class="album-type-badge"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg> VK Playlist</span>
+                  <span class="project-status-badge available">● Melancholy</span>
+                </div>
+                <div class="album-card-header">
+                  <div class="album-cover-thumb">
+                    <img src="cover_sad.jpg" alt="Sadnecessary" class="album-thumb-img">
+                    <div class="album-vinyl-peek"></div>
+                  </div>
+                  <div class="album-title-group">
+                    <h3 class="project-title">Sadnecessary</h3>
+                    <span class="project-sub">Плейлист YaFicus &middot; ВКонтакте</span>
+                  </div>
+                </div>
+                <div class="album-meta-row">
+                  <span class="album-meta-tag">Меланхолия</span>
+                  <span class="album-meta-tag">Indie &middot; Lo-Fi</span>
+                </div>
+                <p class="project-desc">
+                  «Необходимая светлая грусть. Размеренный темп, глубокая атмосфера меланхолии и отрешённости. Плейлист для тишины, созерцания и спокойной перезагрузки головы.»
+                </p>
+                <div class="album-track-highlights">
+                  <span class="track-highlight-label">Вайб плейлиста:</span>
+                  <span class="highlight-item">Ночная рефлексия &middot; Спокойный грув &middot; Отрешённость</span>
+                </div>
+              </div>
+              <div class="project-card-footer">
+                <a href="https://vk.ru/music/playlist/572522119_41" target="_blank" class="project-btn vk-play-btn">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                    <path d="M13.162 18.994c.609 0 .858-.406.851-.915-.072-1.785.743-2.428 1.488-2.428.847 0 1.258.609 1.769 1.543.687 1.258 1.258 1.8 2.378 1.8h2.357c.609 0 .858-.406.406-.915-.847-1.015-2.223-2.613-2.223-2.613-.406-.406-.55-.743 0-1.488.406-.55 1.769-2.484 1.95-3.411.109-.55-.109-.847-.743-.847h-2.357c-.55 0-.743.272-.915.687-.406 1.015-1.543 3.056-2.092 3.056-.272 0-.406-.109-.406-.743V9.588c0-.609-.163-.847-.687-.847h-3.693c-.406 0-.609.272-.609.55 0 .55.847.687.915 2.223v3.351c0 .743-.163.858-.406.858-.743 0-2.545-2.723-3.626-5.836-.204-.609-.406-.847-.95-.847H1.8c-.687 0-.847.272-.847.687 0 .55.687 3.351 3.262 6.945 2.157 3.056 5.176 4.721 8.947 4.721z"/>
+                  </svg>
+                  Слушать в VK Музыке ↗
+                </a>
+              </div>
+            </div>
+
+            <div class="project-card album-card" data-category="heavy">
+              <div class="project-card-top">
+                <div class="album-card-topbar">
+                  <span class="album-type-badge"><svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor" stroke="none"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> VK Playlist</span>
+                  <span class="project-status-badge prod">★ High Power</span>
+                </div>
+                <div class="album-card-header">
+                  <div class="album-cover-thumb">
+                    <img src="cover_heavy.jpg" alt="Из разряда ушедолбежки" class="album-thumb-img">
+                    <div class="album-vinyl-peek"></div>
+                  </div>
+                  <div class="album-title-group">
+                    <h3 class="project-title">Из разряда ушедолбежки</h3>
+                    <span class="project-sub">Плейлист YaFicus &middot; ВКонтакте</span>
+                  </div>
+                </div>
+                <div class="album-meta-row">
+                  <span class="album-meta-tag">Драйв &middot; Бас</span>
+                  <span class="album-meta-tag">EBM &middot; Hard Beat</span>
+                </div>
+                <p class="project-desc">
+                  «Максимальный разгон пульса и перегруженный низ. Плотный бас, тяжёлый ритмичный EBM и треки, под которые сносятся любые камни и крутые съезжалки на байке.»
+                </p>
+                <div class="album-track-highlights">
+                  <span class="track-highlight-label">Вайб плейлиста:</span>
+                  <span class="highlight-item">Фрирайд-топливо &middot; Мощный бас &middot; Чистый адреналин</span>
+                </div>
+              </div>
+              <div class="project-card-footer">
+                <a href="https://vk.ru/music/playlist/572522119_144_fe732cdef4a56f0031" target="_blank" class="project-btn vk-play-btn">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                    <path d="M13.162 18.994c.609 0 .858-.406.851-.915-.072-1.785.743-2.428 1.488-2.428.847 0 1.258.609 1.769 1.543.687 1.258 1.258 1.8 2.378 1.8h2.357c.609 0 .858-.406.406-.915-.847-1.015-2.223-2.613-2.223-2.613-.406-.406-.55-.743 0-1.488.406-.55 1.769-2.484 1.95-3.411.109-.55-.109-.847-.743-.847h-2.357c-.55 0-.743.272-.915.687-.406 1.015-1.543 3.056-2.092 3.056-.272 0-.406-.109-.406-.743V9.588c0-.609-.163-.847-.687-.847h-3.693c-.406 0-.609.272-.609.55 0 .55.847.687.915 2.223v3.351c0 .743-.163.858-.406.858-.743 0-2.545-2.723-3.626-5.836-.204-.609-.406-.847-.95-.847H1.8c-.687 0-.847.272-.847.687 0 .55.687 3.351 3.262 6.945 2.157 3.056 5.176 4.721 8.947 4.721z"/>
+                  </svg>
+                  Слушать в VK Музыке ↗
+                </a>
+              </div>
+            </div>
+
+            <div class="project-card album-card" data-category="doomer">
+              <div class="project-card-top">
+                <div class="album-card-topbar">
+                  <span class="album-type-badge"><svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor" stroke="none"><path d="M12 6.5c-.8 0-1.5.7-1.5 1.5 0 .2 0 .3.1.5C8 9 5 8 2 10c1.5 3 4.5 4 6 3.5 0 2 2 4.5 4 4.5s4-2.5 4-4.5c1.5.5 4.5-.5 6-3.5-3-2-6-1-8.6-1.5.1-.2.1-.3.1-.5 0-.8-.7-1.5-1.5-1.5z"/></svg> VK Playlist</span>
+                  <span class="project-status-badge utility">● Raw Doomer</span>
+                </div>
+                <div class="album-card-header">
+                  <div class="album-cover-thumb">
+                    <img src="cover_doomer.jpg" alt="Happiness Stops Here..." class="album-thumb-img">
+                    <div class="album-vinyl-peek"></div>
+                  </div>
+                  <div class="album-title-group">
+                    <h3 class="project-title">Happiness Stops Here...</h3>
+                    <span class="project-sub">Плейлист YaFicus &middot; ВКонтакте</span>
+                  </div>
+                </div>
+                <div class="album-meta-row">
+                  <span class="album-meta-tag">Андерграунд</span>
+                  <span class="album-meta-tag">Depressive &middot; DIY</span>
+                </div>
+                <p class="project-desc">
+                  «Сырой отечественный андерграунд, депрессивный пост-панк и бескомпромиссная тоска панелек. Звук без глянца и цензуры для тех, кто ищет настоящую атмосферу.»
+                </p>
+                <div class="album-track-highlights">
+                  <span class="track-highlight-label">Вайб плейлиста:</span>
+                  <span class="highlight-item">Думервейв &middot; Сырые гитары &middot; Бескомпромиссность</span>
+                </div>
+              </div>
+              <div class="project-card-footer">
+                <a href="https://vk.ru/music/playlist/572522119_94_f66f68668ab4e901b6" target="_blank" class="project-btn vk-play-btn">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                    <path d="M13.162 18.994c.609 0 .858-.406.851-.915-.072-1.785.743-2.428 1.488-2.428.847 0 1.258.609 1.769 1.543.687 1.258 1.258 1.8 2.378 1.8h2.357c.609 0 .858-.406.406-.915-.847-1.015-2.223-2.613-2.223-2.613-.406-.406-.55-.743 0-1.488.406-.55 1.769-2.484 1.95-3.411.109-.55-.109-.847-.743-.847h-2.357c-.55 0-.743.272-.915.687-.406 1.015-1.543 3.056-2.092 3.056-.272 0-.406-.109-.406-.743V9.588c0-.609-.163-.847-.687-.847h-3.693c-.406 0-.609.272-.609.55 0 .55.847.687.915 2.223v3.351c0 .743-.163.858-.406.858-.743 0-2.545-2.723-3.626-5.836-.204-.609-.406-.847-.95-.847H1.8c-.687 0-.847.272-.847.687 0 .55.687 3.351 3.262 6.945 2.157 3.056 5.176 4.721 8.947 4.721z"/>
+                  </svg>
+                  Слушать в VK Музыке ↗
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <div class="page-portal-section page-portal-dual">
+          <button class="portal-cta-btn return-btn" id="returnFromProjectsToProfile">
+            <span class="portal-arrow">←</span>
+            <span class="portal-text">
+              <strong class="portal-head">I &middot; Профиль</strong>
+              <small class="portal-sub">Главная визитка &middot; Обо мне</small>
+            </span>
+          </button>
+          <button class="portal-cta-btn" id="portalProjectsToAllies">
+            <span class="portal-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="14.5 17.5 3 6 3 3 6 3 17.5 14.5"/><line x1="13" y1="19" x2="19" y2="13"/><line x1="16" y1="16" x2="20" y2="20"/><line x1="19" y1="21" x2="21" y2="19"/><polyline points="14.5 6.5 18 3 21 3 21 6 17.5 9.5"/><line x1="5" y1="14" x2="11" y2="20"/></svg></span>
+            <span class="portal-text">
+              <strong class="portal-head">IV &middot; Круг</strong>
+              <small class="portal-sub">Близкие &middot; Друзья</small>
+            </span>
+            <span class="portal-arrow">➔</span>
+          </button>
+        </div>
+
+        <footer class="card-footer">
+          <div class="footer-filigree">༺ † ༻</div>
+          <p class="epitaph">«Music is the dark pulse of the soul &middot; In tenebris lux»</p>
+          <span class="year-seal">YAFICUS &middot; VK MUSIC SANCTUARY &middot; MMXXVI</span>
+        </footer>
+      </div>
+      <div class="card grimoire-page" id="pageAllies" style="display: none;">
+        <header class="card-header dossier-header">
+          <button class="back-pill-btn" id="backToProfileFromAlliesBtn" title="Вернуться к профилю">
+            <span class="back-arrow">←</span>
+            <span class="back-label">I &middot; Профиль</span>
+          </button>
+          <div class="dossier-header-title">
+            <span class="sigil-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="14.5 17.5 3 6 3 3 6 3 17.5 14.5"/><line x1="13" y1="19" x2="19" y2="13"/><line x1="16" y1="16" x2="20" y2="20"/><line x1="19" y1="21" x2="21" y2="19"/><polyline points="14.5 6.5 18 3 21 3 21 6 17.5 9.5"/><line x1="5" y1="14" x2="11" y2="20"/></svg></span>
+            <span>Близкий Круг &middot; Друзья</span>
+          </div>
+          <div class="header-sigil">༺ ⸸ ༻</div>
+        </header>
+
+        <div class="allies-hero-header">
+          <div class="crest-ornament">🙤 &middot; 🕇 &middot; 🙦</div>
+          <h1 class="allies-page-title">Близкий Круг &middot; Спасибо Друзьям</h1>
+
+</div>
+
+        <section class="card-section">
+                    <div class="allies-grid">
+
+            <div class="ally-card friend-card">
+              <div class="ally-card-topbar">
+                <span class="ally-category-badge">Telegram</span>
+                <span class="project-status-badge prod">★ Steel Brother</span>
+              </div>
+              <div class="ally-card-header">
+                <div class="ally-sigil-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L3 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z"/><line x1="12" y1="7" x2="12" y2="17"/><line x1="7" y1="12" x2="17" y2="12"/></svg></div>
+                <div class="ally-title-group">
+                  <h3 class="ally-group-name">TELO_IZ_STALI</h3>
+                  <span class="ally-group-sub">@TELO_IZ_STALI &middot; Братство</span>
+                </div>
+              </div>
+<p class="ally-desc">
+                «Стальной характер, непробиваемая верность и человек, на которого всегда можно опереться. Настоящая опора в гримуаре.»
+              </p>
+              <div class="friend-card-footer">
+                <a href="https://t.me/TELO_IZ_STALI" target="_blank" class="project-btn friend-tg-btn">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                    <path d="M1.946 9.315c-.522-.174-.527-.455.01-.634L21.044 2.32c.529-.176.832.12.684.638l-3.5 15.34c-.16.634-.537.74-1.077.442l-5.06-3.73-2.44 2.35c-.27.27-.5.5-.96.5l.36-5.16 9.4-8.5c.41-.37-.09-.57-.63-.21l-11.62 7.32-5.02-1.57z"/>
+                  </svg>
+                  Открыть @TELO_IZ_STALI ↗
+                </a>
+              </div>
+            </div>
+
+            <div class="ally-card friend-card">
+              <div class="ally-card-topbar">
+                <span class="ally-category-badge">Telegram</span>
+                <span class="project-status-badge live">● Syndicate</span>
+              </div>
+              <div class="ally-card-header">
+                <div class="ally-sigil-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" stroke="none"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+                <div class="ally-title-group">
+                  <h3 class="ally-group-name">BLEWW0</h3>
+                  <span class="ally-group-sub">@BLEWW0 &middot; Соратник</span>
+                </div>
+              </div>
+<p class="ally-desc">
+                «Проверенный временем кореш. Тот самый соратник, с кем делятся лучшие моменты, треки, идеи и ночные трипы.»
+              </p>
+              <div class="friend-card-footer">
+                <a href="https://t.me/BLEWW0" target="_blank" class="project-btn friend-tg-btn">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                    <path d="M1.946 9.315c-.522-.174-.527-.455.01-.634L21.044 2.32c.529-.176.832.12.684.638l-3.5 15.34c-.16.634-.537.74-1.077.442l-5.06-3.73-2.44 2.35c-.27.27-.5.5-.96.5l.36-5.16 9.4-8.5c.41-.37-.09-.57-.63-.21l-11.62 7.32-5.02-1.57z"/>
+                  </svg>
+                  Открыть @BLEWW0 ↗
+                </a>
+              </div>
+            </div>
+
+            <div class="ally-card friend-card">
+              <div class="ally-card-topbar">
+                <span class="ally-category-badge">Telegram</span>
+                <span class="project-status-badge utility">● Dark Soulmate</span>
+              </div>
+              <div class="ally-card-header">
+                <div class="ally-sigil-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" stroke="none"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></div>
+                <div class="ally-title-group">
+                  <h3 class="ally-group-name">Minarimus</h3>
+                  <span class="ally-group-sub">@Minarimus &middot; Тёмная душка</span>
+                </div>
+              </div>
+<p class="ally-desc">
+                «Человек глубокой волны и тонкого чувства прекрасного. Лучший вайбкодер всея Руси, соратник по музыке, искренности и душевным разговорам.»
+              </p>
+              <div class="friend-card-footer">
+                <a href="https://t.me/Minarimus" target="_blank" class="project-btn friend-tg-btn">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                    <path d="M1.946 9.315c-.522-.174-.527-.455.01-.634L21.044 2.32c.529-.176.832.12.684.638l-3.5 15.34c-.16.634-.537.74-1.077.442l-5.06-3.73-2.44 2.35c-.27.27-.5.5-.96.5l.36-5.16 9.4-8.5c.41-.37-.09-.57-.63-.21l-11.62 7.32-5.02-1.57z"/>
+                  </svg>
+                  Открыть @Minarimus ↗
+                </a>
+              </div>
+            </div>
+
+            <div class="ally-card friend-card phantom-card">
+              <div class="ally-card-topbar">
+                <span class="ally-category-badge">Telegram</span>
+                <span class="project-status-badge phantom-status"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4c2-2 5-1 5 2 0 4-4 7-5 8-1-1-5-4-5-8 0-3 3-4 5-2z"/><path d="M12 14v8"/></svg> ???</span>
+              </div>
+              <div class="ally-card-header">
+                <div class="ally-sigil-icon phantom-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4c2-2 5-1 5 2 0 4-4 7-5 8-1-1-5-4-5-8 0-3 3-4 5-2z"/><path d="M12 14v8"/><path d="M12 17c-2 0-4-1-5-3"/><path d="M12 19c2 0 4-1 5-3"/></svg></div>
+                <div class="ally-title-group">
+                  <h3 class="ally-group-name">@zhenaficusa</h3>
+                  <span class="ally-group-sub">Фантом</span>
+                </div>
+              </div>
+              <div class="friend-card-footer">
+                <a href="https://t.me/Zhenaficusa" target="_blank" class="project-btn friend-phantom-btn">
+                  <span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4c2-2 5-1 5 2 0 4-4 7-5 8-1-1-5-4-5-8 0-3 3-4 5-2z"/><path d="M12 14v8"/></svg></span>
+                  Слот свободен
+                </a>
+              </div>
+            </div>
+
+            <div class="ally-card friend-card reserve-card">
+              <div class="ally-card-topbar">
+                <span class="ally-category-badge">Telegram</span>
+                <span class="project-status-badge available"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 22h14M5 2h14M17 22v-4.17a2 2 0 0 0-.59-1.42L12 12l-4.41 4.41A2 2 0 0 0 7 17.83V22M7 2v4.17a2 2 0 0 0 .59 1.42L12 12l4.41-4.41A2 2 0 0 0 17 6.17V2"/></svg> Скоро</span>
+              </div>
+              <div class="ally-card-header">
+                <div class="ally-sigil-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c-.6 1.2-2 2.6-2 4.2a2 2 0 0 0 4 0c0-1.6-1.4-3-2-4.2z" fill="currentColor"/><line x1="12" y1="6.5" x2="12" y2="10"/><rect x="8" y="10" width="8" height="11" rx="1.5"/></svg></div>
+                <div class="ally-title-group">
+                  <h3 class="ally-group-name">Слот открыт</h3>
+                  <span class="ally-group-sub">Ожидается пополнение</span>
+                </div>
+              </div>
+              <div class="friend-card-footer">
+                <a href="https://t.me/yaficus" target="_blank" class="project-btn reserve-btn">
+                  <span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 22h14M5 2h14M17 22v-4.17a2 2 0 0 0-.59-1.42L12 12l-4.41 4.41A2 2 0 0 0 7 17.83V22M7 2v4.17a2 2 0 0 0 .59 1.42L12 12l4.41-4.41A2 2 0 0 0 17 6.17V2"/></svg></span>
+                  Ожидается пополнение
+                </a>
+              </div>
+            </div>
+
+            <div class="ally-card friend-card reserve-card">
+              <div class="ally-card-topbar">
+                <span class="ally-category-badge">Telegram</span>
+                <span class="project-status-badge available"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 22h14M5 2h14M17 22v-4.17a2 2 0 0 0-.59-1.42L12 12l-4.41 4.41A2 2 0 0 0 7 17.83V22M7 2v4.17a2 2 0 0 0 .59 1.42L12 12l4.41-4.41A2 2 0 0 0 17 6.17V2"/></svg> Скоро</span>
+              </div>
+              <div class="ally-card-header">
+                <div class="ally-sigil-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="14.5 17.5 3 6 3 3 6 3 17.5 14.5"/><line x1="13" y1="19" x2="19" y2="13"/><line x1="16" y1="16" x2="20" y2="20"/><line x1="19" y1="21" x2="21" y2="19"/><polyline points="14.5 6.5 18 3 21 3 21 6 17.5 9.5"/><line x1="5" y1="14" x2="11" y2="20"/></svg></div>
+                <div class="ally-title-group">
+                  <h3 class="ally-group-name">Слот открыт</h3>
+                  <span class="ally-group-sub">Ожидается пополнение</span>
+                </div>
+              </div>
+              <div class="friend-card-footer">
+                <a href="https://t.me/yaficus" target="_blank" class="project-btn reserve-btn">
+                  <span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 22h14M5 2h14M17 22v-4.17a2 2 0 0 0-.59-1.42L12 12l-4.41 4.41A2 2 0 0 0 7 17.83V22M7 2v4.17a2 2 0 0 0 .59 1.42L12 12l4.41-4.41A2 2 0 0 0 17 6.17V2"/></svg></span>
+                  Ожидается пополнение
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <div class="page-portal-section page-portal-dual">
+          <button class="portal-cta-btn return-btn" id="portalAlliesToProfile">
+            <span class="portal-arrow">←</span>
+            <span class="portal-text">
+              <strong class="portal-head">I &middot; Профиль</strong>
+              <small class="portal-sub">Главная визитка</small>
+            </span>
+          </button>
+          <button class="portal-cta-btn" id="portalAlliesToAlbums">
+            <span class="portal-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg></span>
+            <span class="portal-text">
+              <strong class="portal-head">III &middot; Альбомы</strong>
+              <small class="portal-sub">VK Музыкальный Гримуар</small>
+            </span>
+            <span class="portal-arrow">➔</span>
+          </button>
+        </div>
+
+        <footer class="card-footer">
+          <div class="footer-filigree">༺ † ༻</div>
+          <p class="epitaph">«Fidelitas in aeternum &middot; Bruderschaft des Schattens»</p>
+          <span class="year-seal">YAFICUS &middot; INNER CIRCLE &middot; MMXXVI</span>
+        </footer>
+      </div>
+
+    </div>
+  </main>
+
+  <div class="music-player-container" id="musicPlayerContainer">
+    <div class="playlist-drawer" id="playlistDrawer">
+      <div class="playlist-header">
+        <span class="playlist-title">༺ Тёмный Плейлист ༻</span>
+        <button class="playlist-close-btn" id="playlistCloseBtn" title="Закрыть">✕</button>
+      </div>
+      <div class="playlist-list" id="playlistList">
+      </div>
+    </div>
+
+    <div class="music-player-pill" id="musicPlayer">
+      <audio id="bgAudio" preload="auto"></audio>
+      
+      <div class="player-nav-btns">
+        <button class="music-nav-btn" id="prevTrackBtn" title="Предыдущий трек">
+          <svg class="ctrl-svg" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="19 20 9 12 19 4 19 20"></polygon>
+            <line x1="5" y1="19" x2="5" y2="5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></line>
+          </svg>
+        </button>
+        <button class="music-play-btn" id="musicPlayBtn" title="Воспроизвести / Пауза" aria-label="Воспроизвести музыку">
+          <span class="play-icon" id="playIcon">
+            <svg class="play-svg" viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="6 3 20 12 6 21 6 3"></polygon>
+            </svg>
+          </span>
+        </button>
+        <button class="music-nav-btn" id="nextTrackBtn" title="Следующий трек">
+          <svg class="ctrl-svg" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="5 4 15 12 5 20 5 4"></polygon>
+            <line x1="19" y1="5" x2="19" y2="19" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="music-info">
+        <div class="music-title-row">
+          <span class="music-track-name" id="trackName">Ghost &mdash; Mary On A Cross</span>
+          <div class="equalizer" id="equalizer">
+            <span class="bar bar-1"></span>
+            <span class="bar bar-2"></span>
+            <span class="bar bar-3"></span>
+            <span class="bar bar-4"></span>
+          </div>
+        </div>
+
+        <div class="music-seek-bar-container" id="musicSeekContainer" title="Кликни или тяни для перемотки">
+          <div class="music-seek-bar" id="musicSeekBar">
+            <div class="music-seek-fill" id="musicSeekFill">
+              <span class="music-seek-knob"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="music-sub" id="musicSub">0:00 / 0:00 &middot; Occult Rock</div>
+      </div>
+
+      <div class="music-controls">
+        <button class="playlist-toggle-btn" id="playlistToggleBtn" title="Открыть список треков">
+          <svg class="playlist-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="9" y1="6" x2="20" y2="6"></line>
+            <line x1="9" y1="12" x2="20" y2="12"></line>
+            <line x1="9" y1="18" x2="20" y2="18"></line>
+            <circle cx="4" cy="6" r="1.5" fill="currentColor"></circle>
+            <circle cx="4" cy="12" r="1.5" fill="currentColor"></circle>
+            <circle cx="4" cy="18" r="1.5" fill="currentColor"></circle>
+          </svg>
+          <span class="playlist-badge" id="playlistBadge">1/7</span>
+        </button>
+        <button class="music-vol-btn" id="musicMuteBtn" title="Вкл / Выкл звук">
+          <span id="volIconBox">
+            <svg class="vol-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor"></polygon>
+              <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+            </svg>
+          </span>
+        </button>
+        <input type="range" class="music-vol-slider" id="musicVolume" min="0" max="1" step="0.05" value="0.7" title="Громкость">
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">Печать скопирована в буфер</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
