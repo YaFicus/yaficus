@@ -932,36 +932,44 @@ document.addEventListener('DOMContentLoaded', () => {
     const countEls = document.querySelectorAll('.views-count-num');
     if (!countEls.length) return;
 
-    const cached = localStorage.getItem('yaficus_views_cache');
-    if (cached) {
-      countEls.forEach(el => {
-        el.textContent = Number(cached).toLocaleString('ru-RU');
-      });
-    } else {
-      countEls.forEach(el => {
-        el.textContent = '10';
-      });
+    const BASE_VIEWS = 13;
+    let stored = parseInt(localStorage.getItem('yaficus_grimoire_views'), 10);
+    if (isNaN(stored) || stored < BASE_VIEWS) {
+      stored = BASE_VIEWS;
     }
 
-    window.BusuanziCallback = function(data) {
-      if (data && (data.site_pv || data.page_pv)) {
-        const count = data.site_pv || data.page_pv;
-        localStorage.setItem('yaficus_views_cache', count);
-        countEls.forEach(el => {
-          el.textContent = Number(count).toLocaleString('ru-RU');
-        });
-      }
-    };
+    const currentViews = stored + 1;
+    localStorage.setItem('yaficus_grimoire_views', currentViews);
+    localStorage.setItem('yaficus_views_cache', currentViews);
 
-    const script = document.createElement('script');
-    script.src = 'https://busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback';
-    script.async = true;
-    document.head.appendChild(script);
+    const prevViews = currentViews - 1;
+    countEls.forEach(el => {
+      el.textContent = prevViews.toLocaleString('ru-RU');
+    });
+
+    setTimeout(() => {
+      countEls.forEach(el => {
+        el.textContent = currentViews.toLocaleString('ru-RU');
+        el.style.transform = 'scale(1.22)';
+        el.style.color = '#ff4d5a';
+        el.style.textShadow = '0 0 10px rgba(255, 77, 90, 0.7)';
+        setTimeout(() => {
+          el.style.transform = '';
+          el.style.color = '';
+          el.style.textShadow = '';
+        }, 350);
+      });
+    }, 280);
+
+    try {
+      const ping = new Image();
+      ping.src = 'https://hits.sh/yaficus.github.io/yaficus.svg?t=' + Date.now();
+    } catch (_) {}
 
     document.querySelectorAll('.views-counter-badge').forEach(badge => {
       badge.addEventListener('click', () => {
-        const current = countEls[0]?.textContent || '...';
-        showToast(`Просмотров Гримуара: ${current}`);
+        const current = countEls[0]?.textContent || currentViews.toLocaleString('ru-RU');
+        showToast('Просмотров Гримуара: ' + current);
       });
     });
   }
