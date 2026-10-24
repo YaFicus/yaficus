@@ -754,9 +754,15 @@ body {
   flex-direction: column;
   align-items: flex-end;
   gap: 10px;
+  pointer-events: none;
+}
+
+.music-player-pill {
+  pointer-events: auto;
 }
 
 .playlist-drawer {
+  display: none;
   width: 320px;
   max-width: calc(100vw - 32px);
   background: rgba(13, 11, 15, 0.96);
@@ -768,11 +774,13 @@ body {
   opacity: 0;
   pointer-events: none;
   transform: translateY(12px) scale(0.98);
-  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: opacity 0.25s ease, transform 0.25s ease;
   overflow: hidden;
 }
 
 .playlist-drawer.open {
+  display: flex;
+  flex-direction: column;
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0) scale(1);
@@ -1188,6 +1196,8 @@ body {
   justify-content: center;
   gap: 12px;
   margin-bottom: 14px;
+  position: relative;
+  z-index: 20;
 }
 
 .grimoire-tab-btn {
@@ -2800,7 +2810,26 @@ body {
 }
 
 
+.grimoire-tab-btn,
+.portal-cta-btn,
+.gothic-btn,
+.project-btn,
+.friend-tg-btn,
+.friend-phantom-btn,
+.reserve-btn,
+.filter-pill,
+.copy-seal,
+.relic-item-link,
+.back-pill-btn {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(220, 38, 38, 0.15);
+}
+
 @media (max-width: 680px) {
+  body {
+    padding-bottom: 110px;
+  }
+
   .card {
     padding: 24px 18px;
   }
