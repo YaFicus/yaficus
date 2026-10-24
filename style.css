@@ -2825,6 +2825,45 @@ body {
   -webkit-tap-highlight-color: rgba(220, 38, 38, 0.15);
 }
 
+.views-counter-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(13, 11, 15, 0.75);
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--text-muted);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  transition: all 0.25s ease;
+  margin: 6px 0;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.views-counter-badge:hover {
+  border-color: var(--accent);
+  color: #fff;
+  box-shadow: 0 0 14px var(--accent-glow);
+  transform: translateY(-1px);
+}
+
+.views-counter-badge svg {
+  color: var(--accent-light);
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+}
+
+.views-count-num {
+  color: var(--accent-light);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
 @media (max-width: 680px) {
   body {
     padding-bottom: 110px;

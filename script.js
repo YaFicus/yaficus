@@ -928,4 +928,39 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 1500);
     }
   });
+  function initViewCounter() {
+    const countEls = document.querySelectorAll('.views-count-num');
+    if (!countEls.length) return;
+
+    const cached = localStorage.getItem('yaficus_views_cache');
+    if (cached) {
+      countEls.forEach(el => {
+        el.textContent = Number(cached).toLocaleString('ru-RU');
+      });
+    }
+
+    window.BusuanziCallback = function(data) {
+      if (data && (data.site_pv || data.page_pv)) {
+        const count = data.site_pv || data.page_pv;
+        localStorage.setItem('yaficus_views_cache', count);
+        countEls.forEach(el => {
+          el.textContent = Number(count).toLocaleString('ru-RU');
+        });
+      }
+    };
+
+    const script = document.createElement('script');
+    script.src = 'https://busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback';
+    script.async = true;
+    document.head.appendChild(script);
+
+    document.querySelectorAll('.views-counter-badge').forEach(badge => {
+      badge.addEventListener('click', () => {
+        const current = countEls[0]?.textContent || '...';
+        showToast(`Просмотров Гримуара: ${current}`);
+      });
+    });
+  }
+
+  initViewCounter();
 });
