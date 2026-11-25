@@ -6,5 +6,5 @@
     </radialGradient>
   </defs>
   <rect width="64" height="64" rx="16" fill="url(#bgGlow)" stroke="#dc2626" stroke-width="2"/>
-  <text x="50%" y="56%" text-anchor="middle" dominant-baseline="middle" font-size="38" fill="#f87171" font-family="'Playfair Display', serif" font-weight="900" filter="drop-shadow(0 0 6px #dc2626)">⸸</text>
+  <path d="M29 14 H35 V34 H44 V40 H35 V50 H29 V40 H20 V34 H29 Z" fill="#f87171" filter="drop-shadow(0 0 6px #dc2626)"/>
 </svg>
